@@ -41,6 +41,6 @@ object LiftPlayground extends Build {
         dependsOn matteform
     )
     
-    lazy val matteform = RootProject(file("../matteform"))
+    lazy val matteform = RootProject(uri("git://github.com/ellbur/MatteForm.git"))
 }
 
