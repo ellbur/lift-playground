@@ -7,6 +7,10 @@ package object derivatives {
 import java.sql.Timestamp
 import lib.formats._
 
+import net.liftweb.json.{DefaultFormats,parse,render,compact}
+import net.liftweb.json.Extraction
+    import Extraction.{extract, decompose}
+
 // --------------------------------------------------------------------
 // The data types
 
@@ -15,13 +19,14 @@ case class Derivative(
     exec:      Timestamp,
     condition: Condition
 ) {
-    def toJSON: String =
-        throw new IllegalStateException("Not implemented")  
+    import Derivative._
+    
+    def toJSON: String = compact(render(decompose(this)))
 }
 
 object Derivative {
-    def fromJSON(json: String) =
-        throw new IllegalStateException("Not implemented")  
+    implicit val formats = DefaultFormats
+    def fromJSON(json: String) = extract[Derivative](parse(json))
 }
 
 // -------------------------------------------

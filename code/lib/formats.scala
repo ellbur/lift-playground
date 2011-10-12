@@ -44,5 +44,18 @@ case class FormattedCondition(
 implicit def conditionFormatted(c: Condition): FormattedCondition
     = FormattedCondition(c)
     
+case class FormattedDerivative(
+    deriv: Derivative
+) {
+    def toHumanString: String =
+        "%s on %s if %" format (
+            deriv.security toHumanString,
+            deriv.exec,
+            deriv.condition toHumanString
+        )
+}
+implicit def derivativeFormatted(d: Derivative): FormattedDerivative
+    = FormattedDerivative(d)
+    
 } // package
 

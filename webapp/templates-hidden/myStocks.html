@@ -1,13 +1,10 @@
-
-<lift:children>
-
-<lift:Portfolio.ifHaveStocks>
+<lift:children id="ifHaveStocks">
 <table class="stocksTable">
     <tr>
         <th>Ticker</th>
         <th>Volume</th>
     </tr>
-    <tr class="lift:Portfolio.stocks" id="stock">
+    <tr id="stock">
         <td id="ticker"></td>
         <td id="volume"></td>
         <td>
@@ -18,10 +15,8 @@
         </td>
     </tr>
 </table>
-</lift:Portfolio.ifHaveStocks>
-<lift:Portfolio.ifNoStocks>
-<p>You have no stocks</p>
-</lift:Portfolio.ifNoStocks>
-
 </lift:children>
 
+<lift:children id="ifNoStocks">
+<p>You have no stocks</p>
+</lift:children>

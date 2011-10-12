@@ -27,6 +27,7 @@ object Schema extends squeryl.Schema {
     implicit val newsEvents  = table[NewsEvent]
     implicit val derivativeAssets      = table[DerivativeAsset]
     implicit val derivativeLiabilities = table[DerivativeLiability]
+    implicit val derivativeOffers      = table[DerivativeOffer]
     
     def byUsername(name: String): Option[User] =
         inTransaction {
@@ -217,6 +218,16 @@ object Schema extends squeryl.Schema {
                     select(a)
                 ) toList
             }
+        
+        def myOffers: Seq[DerivativeOffer] =
+            inTransaction {
+                from (derivativeOffers) (o =>
+                    where (
+                        o.to === this
+                    )
+                    select(o)
+                ) toList
+            }
     }
 
     case class StockAsset(
@@ -244,6 +255,18 @@ object Schema extends squeryl.Schema {
         var id:    Long            = 0,
         var mode:  String          = "",
         var owner: Link[Portfolio] = 0
+        )
+        extends KL
+    {
+        def derivative: Derivative = Derivative.fromJSON(mode)
+    }
+    
+    case class DerivativeOffer(
+        var id:   Long            = 0,
+        var mode: String          = "",
+        @Column("sender")
+        var from: Link[Portfolio] = 0,
+        var to:   Link[Portfolio] = 0
         )
         extends KL
     {

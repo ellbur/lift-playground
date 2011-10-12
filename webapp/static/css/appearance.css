@@ -64,7 +64,7 @@ table.stocksTable th {
 }
 
 /* ---------------------------------------------- */
-/* Buying */
+/* Trading (myActions) */
 
 table.buyStock td {
     text-align: right
@@ -72,6 +72,24 @@ table.buyStock td {
 
 table.buyStock input {
     width: 4em;
+}
+
+div.buyStock {
+    padding-left: 1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    margin: 0.2em;
+    background-color: #edc;
+    border-radius: 5px;
+}
+
+div.sellDerivative {
+    padding-left: 1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    margin: 0.2em;
+    background-color: #dec;
+    border-radius: 5px;
 }
 
 /* ---------------------------------------------- */
@@ -85,5 +103,9 @@ table.buyStock input {
 .inputSuccess {
     font-size: small;
     color: #090;
+}
+
+.choices {
+    list-style-type: none;
 }
 
